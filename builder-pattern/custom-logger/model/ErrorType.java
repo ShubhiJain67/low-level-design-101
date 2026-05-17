@@ -1,0 +1,9 @@
+package model;
+
+public enum ErrorType {
+    VALIDATION_ERROR,
+    AUTHENTICATION_ERROR,
+    AUTHORIZATION_ERROR,
+    NOT_FOUND_ERROR,
+    SERVER_ERROR
+}
