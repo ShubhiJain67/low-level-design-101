@@ -43,31 +43,31 @@ design-patterns/
 
 # Design Patterns Priority List
 
-| Priority | Design Pattern | Type | Importance |
-|----------|----------------|------|------------|
-| 1 | Strategy Pattern | Behavioral | Very Important |
-| 2 | Factory Pattern | Creational | Very Important |
-| 3 | Singleton Pattern | Creational | Very Important |
-| 4 | Builder Pattern | Creational | Very Important |
-| 5 | Observer Pattern | Behavioral | Very Important |
-| 6 | State Pattern | Behavioral | Very Important |
-| 7 | Chain of Responsibility | Behavioral | Very Important |
-| 8 | Adapter Pattern | Structural | Important |
-| 9 | Decorator Pattern | Structural | Important |
-| 10 | Template Method Pattern | Behavioral | Important |
-| 11 | Command Pattern | Behavioral | Good to Know |
-| 12 | Composite Pattern | Structural | Good to Know |
-| 13 | Facade Pattern | Structural | Good to Know |
-| 14 | Proxy Pattern | Structural | Good to Know |
-| 15 | Iterator Pattern | Behavioral | Good to Know |
-| 16 | Prototype Pattern | Creational | Good to Know |
-| 17 | Bridge Pattern | Structural | Good to Know |
-| 18 | Flyweight Pattern | Structural | Good to Know |
-| 19 | Abstract Factory Pattern | Creational | Less Important |
-| 20 | Mediator Pattern | Behavioral | Less Important |
-| 21 | Memento Pattern | Behavioral | Less Important |
-| 22 | Visitor Pattern | Behavioral | Less Important |
-| 23 | Interpreter Pattern | Behavioral | Less Important |
+| Priority | Design Pattern | Type | Importance | Status |
+|----------|----------------|------|------------|--------|
+| 1 | Strategy Pattern | Behavioral | Very Important | ✅  |
+| 2 | Factory Pattern | Creational | Very Important | ✅  |
+| 3 | Singleton Pattern | Creational | Very Important | ✅  |
+| 4 | Builder Pattern | Creational | Very Important | ✅  |
+| 5 | Observer Pattern | Behavioral | Very Important | ⌛ |
+| 6 | State Pattern | Behavioral | Very Important | ⌛ |
+| 7 | Chain of Responsibility | Behavioral | Very Important | ⌛ |
+| 8 | Adapter Pattern | Structural | Important | ⌛ |
+| 9 | Decorator Pattern | Structural | Important | ⌛ |
+| 10 | Template Method Pattern | Behavioral | Important | ⌛ |
+| 11 | Command Pattern | Behavioral | Good to Know | ⌛ |
+| 12 | Composite Pattern | Structural | Good to Know | ⌛ |
+| 13 | Facade Pattern | Structural | Good to Know | ⌛ |
+| 14 | Proxy Pattern | Structural | Good to Know | ⌛ |
+| 15 | Iterator Pattern | Behavioral | Good to Know | ⌛ |
+| 16 | Prototype Pattern | Creational | Good to Know | ⌛ |
+| 17 | Bridge Pattern | Structural | Good to Know | ⌛ |
+| 18 | Flyweight Pattern | Structural | Good to Know | ⌛ |
+| 19 | Abstract Factory Pattern | Creational | Less Important | ⌛ |
+| 20 | Mediator Pattern | Behavioral | Less Important | ⌛ |
+| 21 | Memento Pattern | Behavioral | Less Important | ⌛ |
+| 22 | Visitor Pattern | Behavioral | Less Important | ⌛ |
+| 23 | Interpreter Pattern | Behavioral | Less Important | ⌛ |
 
 ---
 
