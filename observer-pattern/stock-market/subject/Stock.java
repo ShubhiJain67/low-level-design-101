@@ -1,4 +1,5 @@
 package subject;
+import async.NotificationExecutor;
 import java.util.List;
 import observer.IObserver;
 
@@ -38,8 +39,17 @@ public class Stock implements ISubject {
 
     @Override
     public void notifyObservers() {
-        observers.forEach(
-            observer -> observer.update(this.name, this.price)
-        );
+        for(IObserver observer : observers) {
+            // Thi is SYNC update
+            // observer.update(this.name, this.price);
+
+            // This is ASYNC update
+            NotificationExecutor.getExecutorService().submit(() -> {
+                observer.update(
+                    this.name,
+                    this.price
+                );
+            });
+        }
     }
 }

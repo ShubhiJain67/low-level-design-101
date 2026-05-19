@@ -11,7 +11,8 @@ public class Trader implements IObserver {
     public void update(String stockName, double price) {
         System.out.println(
             String.format(
-                "Trader %s notified. Stock: %s, Price: %.2f",
+                "[%s] -> Trader %s notified. Stock: %s, Price: %.2f",
+                Thread.currentThread().getName(),
                 name,
                 stockName,
                 price
