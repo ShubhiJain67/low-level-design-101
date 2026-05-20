@@ -50,7 +50,7 @@ design-patterns/
 | 3 | Singleton Pattern | Creational | Very Important | ✅  |
 | 4 | Builder Pattern | Creational | Very Important | ✅  |
 | 5 | Observer Pattern | Behavioral | Very Important | ✅ |
-| 6 | State Pattern | Behavioral | Very Important | ⌛ |
+| 6 | State Pattern | Behavioral | Very Important | ✅ |
 | 7 | Chain of Responsibility | Behavioral | Very Important | ⌛ |
 | 8 | Adapter Pattern | Structural | Important | ⌛ |
 | 9 | Decorator Pattern | Structural | Important | ⌛ |
