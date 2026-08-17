@@ -23,22 +23,6 @@ Each pattern contains:
 - When to use
 - Interview tips
 
-Example structure:
-
-```
-design-patterns/
-│
-├── strategy-pattern/
-├── factory-pattern/
-├── singleton-pattern/
-├── builder-pattern/
-├── observer-pattern/
-│.
-│.
-│.
-└── README.md
-```
-
 ---
 
 # How LLD Interviews Actually Work
@@ -65,89 +49,54 @@ Unlike DSA, there's no single correct output to check against - the interviewer 
 
 # Design Patterns Priority List
 
-Ranked by how often they show up in LLD & system-design interviews — not by GoF grouping. Tiers:
-**Master** (asked constantly), **High**, **Good to Know**, **Low**.
-
-| # | Tier | Design Pattern | Type | Status |
-|---|------|----------------|------|--------|
-| 1 | Master | Strategy Pattern | Behavioral | ✅ |
-| 2 | Master | Observer Pattern | Behavioral | ✅ |
-| 3 | Master | Factory Pattern | Creational | ✅ |
-| 4 | Master | Singleton Pattern | Creational | ✅ |
-| 5 | Master | Decorator Pattern | Structural | ⌛ |
-| 6 | Master | Adapter Pattern | Structural | ⌛ |
-| 7 | Master | Facade Pattern | Structural | ⌛ |
-| 8 | Master | Chain of Responsibility | Behavioral | ⌛ |
-| 9 | High | Abstract Factory Pattern | Creational | ⌛ |
-| 10 | High | Builder Pattern | Creational | ✅ |
-| 11 | High | State Pattern | Behavioral | ✅ |
-| 12 | High | Template Method Pattern | Behavioral | ⌛ |
-| 13 | High | Command Pattern | Behavioral | ⌛ |
-| 14 | High | Proxy Pattern | Structural | ⌛ |
-| 15 | Good to Know | Composite Pattern | Structural | ⌛ |
-| 16 | Good to Know | Iterator Pattern | Behavioral | ⌛ |
-| 17 | Good to Know | Dependency Injection | Modern / Arch | ⌛ |
-| 18 | Good to Know | Repository Pattern | Modern / Arch | ⌛ |
-| 19 | Good to Know | Bridge Pattern | Structural | ⌛ |
-| 20 | Low | Prototype Pattern | Creational | ⌛ |
-| 21 | Low | Flyweight Pattern | Structural | ⌛ |
-| 22 | Low | Mediator Pattern | Behavioral | ⌛ |
-| 23 | Low | Memento Pattern | Behavioral | ⌛ |
-| 24 | Low | Visitor Pattern | Behavioral | ⌛ |
-| 25 | Low | Interpreter Pattern | Behavioral | ⌛ |
-
-> **Note:** Dependency Injection and Repository aren't part of the classic GoF set, but at SDE3 level they get asked more than half the GoF structural patterns — testability and data-layer abstraction are core senior signals, so they're included here.
-
----
-
-# What to Focus On, and Why (Pattern by Pattern)
-
-This is the part that actually matters for interviews - not "what does the pattern do" (that's in each pattern's own folder), but WHERE it shows up in real LLD prompts, WHAT the interviewer is really checking for when it comes up, and the MISTAKE that gives away shallow understanding.
+Ranked by how often they show up in LLD & system-design interviews — not by GoF grouping. Per pattern: where it shows up in real prompts, what's actually being tested, and the mistake that gives away shallow understanding.
 
 ## Master Tier — learn these cold, be able to code from memory under pressure
 
-| Pattern | Shows Up In | What's Actually Being Tested | Common Mistake |
-|---|---|---|---|
-| Strategy | Cache eviction (LRU/LFU), payment methods, sorting/ranking rules, discount calculation | Can you swap an algorithm at runtime without an if-else ladder, via composition not inheritance | Using inheritance + method overriding instead of composition + interface - defeats the whole point |
-| Observer | Stock ticker, notification systems, pub/sub, UI event handling | Do you decouple the "thing that changes" from "things that react to it" - and do you handle a subject with many observers cleanly | Forgetting to handle observer removal/cleanup - memory leaks from dangling references are a real follow-up question |
-| Factory | Payment gateway (Razorpay/Stripe/PayPal), vehicle creation in a parking lot, shape/notification creators | Do you hide object CREATION logic from the client, so adding a new type doesn't touch calling code | Just writing a big switch/if-else inside a method called "factory" - that's not decoupling, it's the same coupling with a new name |
-| Singleton | Config manager, logger, connection pool, cache instance | Do you actually understand WHY only 1 instance should exist here, and can you make it thread-safe (double-checked locking / enum singleton) | Reciting `getInstance()` without being able to explain the thread-safety problem it has to solve - this pattern gets probed hardest on the "why" |
-| Decorator | Adding toppings to a pizza/coffee order, adding compression/encryption layers to a stream, adding UI widget behaviors | Can you add behavior to ONE object at runtime without touching the class or creating a subclass explosion | Confusing this with Inheritance - if you're subclassing for every combination, you've missed the point of the pattern |
-| Adapter | Integrating a legacy or third-party library with an incompatible interface | Can you make 2 incompatible interfaces work together without modifying either one | Reaching for Adapter when you actually control both interfaces - if you can just change one of them, you don't need this pattern |
-| Facade | Simplifying a complex subsystem (e.g. hiding a multi-step checkout/booking flow behind 1 call) | Do you know when to hide complexity vs when hiding it removes needed flexibility from the caller | Treating Facade as "just a wrapper class" without articulating what subsystem complexity it's actually hiding |
-| Chain of Responsibility | Logging levels, middleware pipelines, approval workflows (expense approval by manager tier), request validation pipelines | Can you let a request pass through a series of handlers where each decides "handle it or pass it on," without the caller knowing how many handlers exist | Not handling the "no handler matched" case - what happens at the end of the chain is a real edge case interviewers check |
+| Pattern | Type | Status | Shows Up In | What's Actually Being Tested | Common Mistake |
+|---|---|---|---|---|---|
+| Strategy | Behavioral | ✅ | Cache eviction (LRU/LFU), payment methods, sorting/ranking rules, discount calculation | Can you swap an algorithm at runtime without an if-else ladder, via composition not inheritance | Using inheritance + method overriding instead of composition + interface - defeats the whole point |
+| Observer | Behavioral | ✅ | Stock ticker, notification systems, pub/sub, UI event handling | Do you decouple the "thing that changes" from "things that react to it" - and do you handle a subject with many observers cleanly | Forgetting to handle observer removal/cleanup - memory leaks from dangling references are a real follow-up question |
+| Factory | Creational | ✅ | Payment gateway (Razorpay/Stripe/PayPal), vehicle creation in a parking lot, shape/notification creators | Do you hide object CREATION logic from the client, so adding a new type doesn't touch calling code | Just writing a big switch/if-else inside a method called "factory" - that's not decoupling, it's the same coupling with a new name |
+| Singleton | Creational | ✅ | Config manager, logger, connection pool, cache instance | Do you actually understand WHY only 1 instance should exist here, and can you make it thread-safe (double-checked locking / enum singleton) | Reciting `getInstance()` without being able to explain the thread-safety problem it has to solve - this pattern gets probed hardest on the "why" |
+| Decorator | Structural | ⌛ TODO | Adding toppings to a pizza/coffee order, adding compression/encryption layers to a stream, adding UI widget behaviors | Can you add behavior to ONE object at runtime without touching the class or creating a subclass explosion | Confusing this with Inheritance - if you're subclassing for every combination, you've missed the point of the pattern |
+| Adapter | Structural | ⌛ TODO | Integrating a legacy or third-party library with an incompatible interface | Can you make 2 incompatible interfaces work together without modifying either one | Reaching for Adapter when you actually control both interfaces - if you can just change one of them, you don't need this pattern |
+| Facade | Structural | ⌛ TODO | Simplifying a complex subsystem (e.g. hiding a multi-step checkout/booking flow behind 1 call) | Do you know when to hide complexity vs when hiding it removes needed flexibility from the caller | Treating Facade as "just a wrapper class" without articulating what subsystem complexity it's actually hiding |
+| Chain of Responsibility | Behavioral | ⌛ TODO | Logging levels, middleware pipelines, approval workflows (expense approval by manager tier), request validation pipelines | Can you let a request pass through a series of handlers where each decides "handle it or pass it on," without the caller knowing how many handlers exist | Not handling the "no handler matched" case - what happens at the end of the chain is a real edge case interviewers check |
 
 ## High Priority Tier
 
-| Pattern | Shows Up In | What's Actually Being Tested | Common Mistake |
-|---|---|---|---|
-| Abstract Factory | Cross-platform UI kits, creating families of related objects (e.g. a "theme" that produces matching buttons/checkboxes) | Can you ensure a whole FAMILY of related objects stays consistent, not just one object at a time | Not being able to explain how this differs from plain Factory - if there's only 1 product type, you don't need Abstract Factory |
-| Builder | Constructing objects with many optional fields (HTTP request builder, meal order, complex config object) | Do you avoid telescoping constructors and give the caller a readable, safe way to build a complex object step by step | Building a Builder for a class with 2-3 fields - this is over-engineering a problem that didn't need it |
-| State | Vending machine, order status lifecycle (placed → shipped → delivered), traffic light, media player | Do state TRANSITIONS live in the state objects themselves, not as a giant if-else keyed on an enum | Keeping all transition logic in one class with a switch on current state - that's not the State pattern, that's just a state machine without the pattern's benefit |
-| Template Method | Data processing pipelines with fixed steps but varying implementation (e.g. different file parsers sharing a read→parse→validate→save skeleton) | Can you fix the algorithm's SKELETON in a base class while letting subclasses override only the steps that vary | Overriding the whole algorithm instead of just the varying steps - defeats the "template" part |
-| Command | Undo/redo systems, task queues, remote controls, transactional operations | Can you encapsulate a REQUEST as an object so it can be queued, logged, undone, or retried later | Not separating the command's execute from its undo logic - undo is usually the actual interview follow-up |
-| Proxy | Lazy-loading expensive objects, access control layers, caching a remote/expensive call | Do you understand which proxy type you need - virtual (lazy load), protection (access control), or caching/remote | Conflating Proxy with Decorator - Proxy controls ACCESS to an object, Decorator adds BEHAVIOR to one; mixing these up is a common tell |
+| Pattern | Type | Status | Shows Up In | What's Actually Being Tested | Common Mistake |
+|---|---|---|---|---|---|
+| Abstract Factory | Creational | ⌛ TODO | Cross-platform UI kits, creating families of related objects (e.g. a "theme" that produces matching buttons/checkboxes) | Can you ensure a whole FAMILY of related objects stays consistent, not just one object at a time | Not being able to explain how this differs from plain Factory - if there's only 1 product type, you don't need Abstract Factory |
+| Builder | Creational | ✅ | Constructing objects with many optional fields (HTTP request builder, meal order, complex config object) | Do you avoid telescoping constructors and give the caller a readable, safe way to build a complex object step by step | Building a Builder for a class with 2-3 fields - this is over-engineering a problem that didn't need it |
+| State | Behavioral | ✅ | Vending machine, order status lifecycle (placed → shipped → delivered), traffic light, media player | Do state TRANSITIONS live in the state objects themselves, not as a giant if-else keyed on an enum | Keeping all transition logic in one class with a switch on current state - that's not the State pattern, that's just a state machine without the pattern's benefit |
+| Template Method | Behavioral | ⌛ TODO | Data processing pipelines with fixed steps but varying implementation (e.g. different file parsers sharing a read→parse→validate→save skeleton) | Can you fix the algorithm's SKELETON in a base class while letting subclasses override only the steps that vary | Overriding the whole algorithm instead of just the varying steps - defeats the "template" part |
+| Command | Behavioral | ⌛ TODO | Undo/redo systems, task queues, remote controls, transactional operations | Can you encapsulate a REQUEST as an object so it can be queued, logged, undone, or retried later | Not separating the command's execute from its undo logic - undo is usually the actual interview follow-up |
+| Proxy | Structural | ⌛ TODO | Lazy-loading expensive objects, access control layers, caching a remote/expensive call | Do you understand which proxy type you need - virtual (lazy load), protection (access control), or caching/remote | Conflating Proxy with Decorator - Proxy controls ACCESS to an object, Decorator adds BEHAVIOR to one; mixing these up is a common tell |
 
 ## Good to Know Tier
 
-| Pattern | Shows Up In | What's Actually Being Tested | Common Mistake |
-|---|---|---|---|
-| Composite | File system trees, org charts, UI component trees (panels containing panels) | Can you treat a single object and a group of objects through the SAME interface | Adding type-checks ("is this a leaf or a composite?") in client code - that's exactly what the pattern is supposed to eliminate |
-| Iterator | Custom collection traversal without exposing internal structure | Do you decouple traversal logic from the collection's internal representation | Exposing the internal data structure directly instead of hiding it behind the iterator interface |
-| Dependency Injection | Any testable, layered system - services receiving their dependencies instead of constructing them | Can you explain WHY constructor injection makes a class testable (swap in a mock) where `new SomeService()` inside the class can't | Only knowing the term from a framework (Spring `@Autowired`) without being able to write it by hand in a framework-free interview |
-| Repository | Abstracting data access from business logic (so the DB/ORM is swappable) | Do your service classes depend on an interface, not directly on SQL/ORM calls | Letting query logic leak into the service layer "just this once" - that's the abstraction breaking under a follow-up requirement |
-| Bridge | Decoupling an abstraction from its implementation so both vary independently (e.g. remote control working across different device brands) | Can you tell this apart from Adapter - Bridge is designed upfront for 2 axes of variation, Adapter retrofits 2 already-existing incompatible things | Using Bridge when Strategy would do - if there's only 1 axis of variation, it's Strategy, not Bridge |
+| Pattern | Type | Status | Shows Up In | What's Actually Being Tested | Common Mistake |
+|---|---|---|---|---|---|
+| Composite | Structural | ⌛ TODO | File system trees, org charts, UI component trees (panels containing panels) | Can you treat a single object and a group of objects through the SAME interface | Adding type-checks ("is this a leaf or a composite?") in client code - that's exactly what the pattern is supposed to eliminate |
+| Iterator | Behavioral | ⌛ TODO | Custom collection traversal without exposing internal structure | Do you decouple traversal logic from the collection's internal representation | Exposing the internal data structure directly instead of hiding it behind the iterator interface |
+| Dependency Injection | Modern / Arch | ⌛ TODO | Any testable, layered system - services receiving their dependencies instead of constructing them | Can you explain WHY constructor injection makes a class testable (swap in a mock) where `new SomeService()` inside the class can't | Only knowing the term from a framework (Spring `@Autowired`) without being able to write it by hand in a framework-free interview |
+| Repository | Modern / Arch | ⌛ TODO | Abstracting data access from business logic (so the DB/ORM is swappable) | Do your service classes depend on an interface, not directly on SQL/ORM calls | Letting query logic leak into the service layer "just this once" - that's the abstraction breaking under a follow-up requirement |
+| Bridge | Structural | ⌛ TODO | Decoupling an abstraction from its implementation so both vary independently (e.g. remote control working across different device brands) | Can you tell this apart from Adapter - Bridge is designed upfront for 2 axes of variation, Adapter retrofits 2 already-existing incompatible things | Using Bridge when Strategy would do - if there's only 1 axis of variation, it's Strategy, not Bridge |
+
+> **Note:** Dependency Injection and Repository aren't part of the classic GoF set, but at SDE3 level they get asked more than half the GoF structural patterns — testability and data-layer abstraction are core senior signals, so they're included here.
 
 ## Low Frequency Tier — recognize these, don't over-invest study time
 
-| Pattern | Shows Up In | What's Actually Being Tested |
-|---|---|---|
-| Prototype | Cloning expensive-to-construct objects (game entities, deep-copied config objects) | Understanding shallow vs deep copy pitfalls |
-| Flyweight | Large numbers of similar objects sharing common state (text rendering, game particle systems) | Separating intrinsic (shared) from extrinsic (per-instance) state |
-| Mediator | Complex many-to-many object communication (chat room, air traffic control) | Centralizing communication instead of objects referencing each other directly |
-| Memento | Undo functionality that needs to snapshot and restore state | Capturing state without violating encapsulation |
-| Visitor | Adding new operations across a class hierarchy without modifying the classes | Double-dispatch mechanics |
-| Interpreter | Small grammar/expression parsing (rule engines, simple query languages) | Recognizing when NOT to use this - most "parsing" problems don't need a full Interpreter pattern |
+| Pattern | Type | Status | Shows Up In | What's Actually Being Tested |
+|---|---|---|---|---|
+| Prototype | Creational | ⌛ TODO | Cloning expensive-to-construct objects (game entities, deep-copied config objects) | Understanding shallow vs deep copy pitfalls |
+| Flyweight | Structural | ⌛ TODO | Large numbers of similar objects sharing common state (text rendering, game particle systems) | Separating intrinsic (shared) from extrinsic (per-instance) state |
+| Mediator | Behavioral | ⌛ TODO | Complex many-to-many object communication (chat room, air traffic control) | Centralizing communication instead of objects referencing each other directly |
+| Memento | Behavioral | ⌛ TODO | Undo functionality that needs to snapshot and restore state | Capturing state without violating encapsulation |
+| Visitor | Behavioral | ⌛ TODO | Adding new operations across a class hierarchy without modifying the classes | Double-dispatch mechanics |
+| Interpreter | Behavioral | ⌛ TODO | Small grammar/expression parsing (rule engines, simple query languages) | Recognizing when NOT to use this - most "parsing" problems don't need a full Interpreter pattern |
 
 ---
 
@@ -183,93 +132,6 @@ This is the part that actually matters for interviews - not "what does the patte
 
 ---
 
-# Quick Summary of Pattern Types
-
-## Creational Patterns
-Used for object creation mechanisms.
-
-Examples:
-- Factory
-- Builder
-- Singleton
-- Prototype
-
----
-
-## Structural Patterns
-Used to organize classes and objects.
-
-Examples:
-- Adapter
-- Decorator
-- Proxy
-- Facade
-
----
-
-## Behavioral Patterns
-Used for communication between objects.
-
-Examples:
-- Strategy
-- Observer
-- State
-- Command
-
----
-
-## Modern / Architectural Patterns
-Beyond GoF, common in layered / testable systems.
-
-Examples:
-- Dependency Injection
-- Repository
-
----
-
-# Recommended Learning Order
-
-## Phase 1 — Master (learn cold)
-- Strategy
-- Observer
-- Factory
-- Singleton
-- Decorator
-- Adapter
-- Facade
-- Chain of Responsibility
-
----
-
-## Phase 2 — High Priority
-- Abstract Factory
-- Builder
-- State
-- Template Method
-- Command
-- Proxy
-
----
-
-## Phase 3 — Good to Know
-- Composite
-- Iterator
-- Dependency Injection
-- Repository
-- Bridge
-
----
-
-## Phase 4 — Advanced / Low Frequency
-- Prototype
-- Flyweight
-- Mediator
-- Memento
-- Visitor
-- Interpreter
-
----
-
 # LLD Practice Problems (Beyond Patterns)
 
 Real LLD interviews almost never say "implement Singleton." They say "design a parking lot" or "design a vending machine," and expect you to combine OOP + SOLID + multiple patterns into one working system live, in 30-45 minutes. Pattern-in-isolation practice (everything above) is necessary but not sufficient - this is the part that's actually missing until now.
@@ -279,40 +141,40 @@ Each problem gets its own folder (`lld-problems/01_parking_lot/` etc.), same dep
 ## Tier 1 - Foundational (single-actor, simpler state machines - start here)
 | # | Problem | Patterns/Concepts Tested | Companies | Status |
 |---|---------|---------------------------|-----------|--------|
-| 1 | Parking Lot | Strategy (fee calc), Factory (vehicle types), Singleton (manager) | Amazon, Microsoft, Google, Uber | 🔲 TODO - not built yet (01_parking_lot) |
-| 2 | Vending Machine | State | Amazon, Microsoft | 🔲 TODO - not built yet (02_vending_machine) |
-| 3 | ATM | State, Strategy | Amazon, Microsoft, Visa | 🔲 TODO - not built yet (03_atm) |
-| 4 | Tic-Tac-Toe | Basic OOP, Strategy (win-check) | Amazon, Google | 🔲 TODO - not built yet (04_tic_tac_toe) |
+| 1 | Parking Lot | Strategy (fee calc), Factory (vehicle types), Singleton (manager) | Amazon, Microsoft, Google, Uber | 🔲 TODO (01_parking_lot) |
+| 2 | Vending Machine | State | Amazon, Microsoft | 🔲 TODO (02_vending_machine) |
+| 3 | ATM | State, Strategy | Amazon, Microsoft, Visa | 🔲 TODO (03_atm) |
+| 4 | Tic-Tac-Toe | Basic OOP, Strategy (win-check) | Amazon, Google | 🔲 TODO (04_tic_tac_toe) |
 
 ## Tier 2 - Core Pattern Practice
 | # | Problem | Patterns/Concepts Tested | Companies | Status |
 |---|---------|---------------------------|-----------|--------|
-| 1 | Elevator System | State, Strategy (scheduling), Observer | Amazon, Microsoft, Google, Uber | 🔲 TODO - not built yet (05_elevator_system) |
-| 2 | Library Management System | Factory, Observer (due-date alerts) | Amazon, Microsoft | 🔲 TODO - not built yet (06_library_management) |
-| 3 | Chess | Strategy (move validation per piece), Command (undo), Memento | Amazon, Google, Microsoft | 🔲 TODO - not built yet (07_chess) |
-| 4 | Snake & Ladder | Basic OOP, Strategy | Amazon | 🔲 TODO - not built yet (08_snake_and_ladder) |
-| 5 | LRU/LFU Cache | HashMap + Doubly Linked List design (classic machine coding, no single GoF pattern) | Amazon, Google, Microsoft, Meta | 🔲 TODO - not built yet (09_lru_lfu_cache) |
-| 6 | Rate Limiter (LLD) | Strategy (Token Bucket / Sliding Window swap) | Amazon, Google, Stripe | 🔲 TODO - not built yet (10_rate_limiter) |
-| 7 | Logging Framework | Singleton, Chain of Responsibility (log levels), Strategy (output destination) | Amazon, Microsoft | 🔲 TODO - not built yet (11_logging_framework) |
-| 8 | Task Scheduler | Command, Strategy (priority), Observer | Amazon, Google | 🔲 TODO - not built yet (12_task_scheduler) |
+| 1 | Elevator System | State, Strategy (scheduling), Observer | Amazon, Microsoft, Google, Uber | 🔲 TODO (05_elevator_system) |
+| 2 | Library Management System | Factory, Observer (due-date alerts) | Amazon, Microsoft | 🔲 TODO (06_library_management) |
+| 3 | Chess | Strategy (move validation per piece), Command (undo), Memento | Amazon, Google, Microsoft | 🔲 TODO (07_chess) |
+| 4 | Snake & Ladder | Basic OOP, Strategy | Amazon | 🔲 TODO (08_snake_and_ladder) |
+| 5 | LRU/LFU Cache | HashMap + Doubly Linked List design (classic machine coding, no single GoF pattern) | Amazon, Google, Microsoft, Meta | 🔲 TODO (09_lru_lfu_cache) |
+| 6 | Rate Limiter (LLD) | Strategy (Token Bucket / Sliding Window swap) | Amazon, Google, Stripe | 🔲 TODO (10_rate_limiter) |
+| 7 | Logging Framework | Singleton, Chain of Responsibility (log levels), Strategy (output destination) | Amazon, Microsoft | 🔲 TODO (11_logging_framework) |
+| 8 | Task Scheduler | Command, Strategy (priority), Observer | Amazon, Google | 🔲 TODO (12_task_scheduler) |
 
 ## Tier 3 - Multi-Actor / High-Frequency Interview Questions
 | # | Problem | Patterns/Concepts Tested | Companies | Status |
 |---|---------|---------------------------|-----------|--------|
-| 1 | BookMyShow / Movie Ticket Booking | Factory, Observer, concurrency (seat locking) | Amazon, Microsoft, BookMyShow | 🔲 TODO - not built yet (13_movie_ticket_booking) |
-| 2 | Hotel Management System | Factory, Strategy (pricing), Observer | Amazon, Microsoft | 🔲 TODO - not built yet (14_hotel_management) |
-| 3 | Splitwise / Expense Sharing | Strategy (equal/exact/percent split), Observer | Amazon, Google | 🔲 TODO - not built yet (15_splitwise) |
-| 4 | Amazon Locker | Strategy (size assignment), State | Amazon | 🔲 TODO - not built yet (16_amazon_locker) |
-| 5 | Meeting Room Scheduler | Strategy, concurrency (double-booking prevention) | Amazon, Microsoft, Google | 🔲 TODO - not built yet (17_meeting_room_scheduler) |
-| 6 | Pub/Sub System | Observer, Singleton | Amazon, Google | 🔲 TODO - not built yet (18_pub_sub_system) |
+| 1 | BookMyShow / Movie Ticket Booking | Factory, Observer, concurrency (seat locking) | Amazon, Microsoft, BookMyShow | 🔲 TODO (13_movie_ticket_booking) |
+| 2 | Hotel Management System | Factory, Strategy (pricing), Observer | Amazon, Microsoft | 🔲 TODO (14_hotel_management) |
+| 3 | Splitwise / Expense Sharing | Strategy (equal/exact/percent split), Observer | Amazon, Google | 🔲 TODO (15_splitwise) |
+| 4 | Amazon Locker | Strategy (size assignment), State | Amazon | 🔲 TODO (16_amazon_locker) |
+| 5 | Meeting Room Scheduler | Strategy, concurrency (double-booking prevention) | Amazon, Microsoft, Google | 🔲 TODO (17_meeting_room_scheduler) |
+| 6 | Pub/Sub System | Observer, Singleton | Amazon, Google | 🔲 TODO (18_pub_sub_system) |
 
 ## Tier 4 - Advanced / Leverage Your Blinkit Background
 | # | Problem | Patterns/Concepts Tested | Companies | Status |
 |---|---------|---------------------------|-----------|--------|
-| 1 | Ride Sharing (Uber LLD) | Strategy (matching), State (ride lifecycle), Observer | Uber, Amazon, Google | 🔲 TODO - not built yet (19_ride_sharing) |
-| 2 | Food Delivery (Swiggy/Zomato/Blinkit-style) | State (order lifecycle), Strategy (delivery partner assignment), Observer | Swiggy, Zomato, Blinkit | 🔲 TODO - not built yet (20_food_delivery) |
-| 3 | Payment Gateway | Strategy (payment method), State (transaction status), Chain of Responsibility (fraud checks) | Amazon, Stripe, PayPal | ✅ (partially - reuse/extend your existing factory-pattern/payment-gateway-system project) |
-| 4 | Social Media Feed / Notification Service | Observer, Strategy (ranking), Factory | Meta, Amazon | 🔲 TODO - not built yet (21_social_feed_notifications) |
+| 1 | Ride Sharing (Uber LLD) | Strategy (matching), State (ride lifecycle), Observer | Uber, Amazon, Google | 🔲 TODO (19_ride_sharing) |
+| 2 | Food Delivery (Swiggy/Zomato/Blinkit-style) | State (order lifecycle), Strategy (delivery partner assignment), Observer | Swiggy, Zomato, Blinkit | 🔲 TODO (20_food_delivery) |
+| 3 | Payment Gateway | Strategy (payment method), State (transaction status), Chain of Responsibility (fraud checks) | Amazon, Stripe, PayPal | ✅ partial (reuse factory-pattern/payment-gateway-system) |
+| 4 | Social Media Feed / Notification Service | Observer, Strategy (ranking), Factory | Meta, Amazon | 🔲 TODO (21_social_feed_notifications) |
 
 ---
 
@@ -344,49 +206,6 @@ This is the follow-up question that separates "I can design" from "I can design 
 
 ---
 
-# YouTube Video Checklist (LLD Full Course)
-
-Same order as the learning/build order above — code the pattern, then record it. Full breakdown (concept/UML/coding split, applied-problem videos, reasoning) lives in `YOUTUBE_LLD_COURSE_PLAN.md`.
-
-🔲 Series intro / roadmap video
-
-**Master Tier**
-- 🔲 Strategy — concept, requirement+UML, coding (reuse cache-eviction-policies)
-- 🔲 Observer — concept, requirement+UML, coding (reuse stock-market)
-- 🔲 Factory — concept, requirement+UML, coding (reuse payment-gateway-system)
-- 🔲 Singleton — concept, requirement+UML, coding (reuse configuration-manager)
-- 🔲 Decorator — concept, requirement+UML, coding (build new)
-- 🔲 Adapter — concept, requirement+UML, coding (build new)
-- 🔲 Facade — concept, requirement+UML, coding (build new)
-- 🔲 Chain of Responsibility — concept, requirement+UML, coding (build new)
-- 🔲 Applied Problem: Design a Vending Machine (State + Strategy + Factory + Singleton)
-
-**High Priority Tier**
-- 🔲 Abstract Factory — concept, requirement+UML, coding (build new)
-- 🔲 Builder — concept, requirement+UML, coding (reuse custom-logger)
-- 🔲 State — concept, requirement+UML, coding (reuse vending-machine)
-- 🔲 Template Method — concept, requirement+UML, coding (build new)
-- 🔲 Command — concept, requirement+UML, coding (build new)
-- 🔲 Proxy — concept, requirement+UML, coding (build new)
-- 🔲 Applied Problem: Design a Parking Lot (Abstract Factory + Strategy + Singleton + Observer)
-
-**Good to Know Tier**
-- 🔲 Composite — concept, requirement+UML, coding
-- 🔲 Iterator — concept, requirement+UML, coding
-- 🔲 Dependency Injection — concept, requirement+UML, coding
-- 🔲 Repository — concept, requirement+UML, coding
-- 🔲 Bridge — concept, requirement+UML, coding
-- 🔲 Applied Problem: Design a Notification/Logging Framework (Chain of Responsibility + Observer + DI)
-
-**Low Frequency Tier (condensed)**
-- 🔲 Prototype, Flyweight, Mediator — one combined video
-- 🔲 Memento, Visitor, Interpreter — one combined video
-
-**Closing**
-- 🔲 LLD Interview Cheat Sheet — pattern-to-keyword recap
-
----
-
 # Common LLD Interview Mistakes (Beyond Just Knowing the Patterns)
 
 - **Pattern soup** - forcing 3 patterns into a design that only needed 1. Interviewers notice over-engineering as much as under-engineering; if you can't justify why each pattern is there, cut it.
@@ -395,6 +214,3 @@ Same order as the learning/build order above — code the pattern, then record i
 - **Jumping to code before requirements/classes** - the fastest way to lose an LLD round is writing code in the first 5 minutes instead of clarifying scope and sketching entities first.
 - **Ignoring concurrency where it's relevant** - Singleton, shared caches, and booking/inventory systems all have real thread-safety follow-ups; not addressing it unprompted is a missed signal opportunity, not a neutral omission.
 - **Not handling the "what if" extension** - the interviewer WILL add a requirement mid-design. A good design absorbs it by adding a class, not by editing five existing ones. If your first design can't survive that, that's the actual test, not the initial code.
-
-<!-- # How to Run -->
-<!-- TODO Need to add this -->
