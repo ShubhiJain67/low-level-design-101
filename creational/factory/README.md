@@ -134,4 +134,4 @@ class ShapeFactory {
 
 ---
 
-Full breakdown — where this shows up in interviews, what's actually tested, and the common mistake — lives in the Factory row of the [root README](../README.md).
+Full breakdown — where this shows up in interviews, what's actually tested, and the common mistake — lives in the Factory row of the [root README](../../README.md).
