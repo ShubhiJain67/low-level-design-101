@@ -115,19 +115,21 @@ Same technique, modern implementation: a `Map<Type, Supplier<T>>` instead of a s
 
 ```java
 class ShapeFactory {
-    private static final Map<ShapeType, Supplier<IShape>> STORE_MAP = new HashMap<>();
+    // Function<IShapeConfig, IShape> — takes a config, returns a shape.
+    // (Function<T, R> = takes a T, returns an R — this was backwards before.)
+    private static final Map<ShapeType, Function<IShapeConfig, IShape>> STORE_MAP = new HashMap<>();
 
-    public static IShape getShape(ShapeType type) {
-        Supplier<IShape> supplier = STORE_MAP.get(type);
-        if (supplier == null) {
+    public static IShape getShape(ShapeType type, IShapeConfig config) {
+        Function<IShapeConfig, IShape> creator = STORE_MAP.get(type);
+        if (creator == null) {
             throw new IllegalArgumentException("Unknown type: " + type);
         }
-        return supplier.get();
+        return creator.apply(config);
     }
 
     // open for extension — no existing code touched to add a type
-    public static void register(ShapeType type, Supplier<IShape> supplier) {
-        STORE_MAP.put(type, supplier);
+    public static void register(ShapeType type, Function<IShapeConfig, IShape> creator) {
+        STORE_MAP.put(type, creator);
     }
 }
 ```
