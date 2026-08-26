@@ -45,6 +45,7 @@ Singleton is the GoF pattern most often in *tension* with SOLID, not reinforcing
 
 - **vs Factory** — Factory decides *which class* to instantiate; Singleton restricts *how many instances* of one class can exist. Orthogonal concerns — a factory can itself be implemented as a Singleton.
 - **vs static utility class** — Singleton is a real object: it can implement an interface, hold state, and be lazily constructed with dependencies. A static utility class can't do any of that.
+- **vs Flyweight** — Singleton guarantees exactly ONE instance total; Flyweight allows MANY shared instances, one per distinct intrinsic-state key, reused across many logical objects. Both are about controlling instance creation, but Singleton caps the count at 1 and Flyweight caps it at "one per unique key."
 
 ## Interview Line
 

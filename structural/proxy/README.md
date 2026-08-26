@@ -44,6 +44,7 @@ Client --> Subject (interface) <-- RealSubject
 
 - **vs Decorator** — Proxy controls ACCESS to an object, deciding whether/when/how a call reaches it; Decorator adds BEHAVIOR to an object — the call always reaches it, decorators just add extra work before/after. Conflating the two is a common interview tell.
 - **vs Facade** — Facade simplifies access to an entire subsystem of many classes; Proxy stands in for ONE specific object, implementing the exact same interface as that object.
+- **vs Singleton** — different axis entirely, easy to conflate since both "sit in front of" object creation: Singleton controls *how many instances exist* (exactly one); Proxy controls *access* to an instance regardless of count — the client can't even tell whether it's talking to the real object or a stand-in.
 
 ## Interview Line
 

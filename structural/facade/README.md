@@ -41,6 +41,7 @@ Client --> Facade --> { SubsystemA, SubsystemB, SubsystemC } (Facade coordinates
 
 - **vs Adapter** — Adapter makes an existing interface match another interface the client expects (translation, usually one class); Facade defines a brand-new, simpler interface over an entire subsystem of many classes.
 - **vs Mediator** — both coordinate multiple objects, but Facade offers a one-directional simplified entry point from client to subsystem; Mediator centralizes many-to-many communication between the subsystem's own objects.
+- **vs Proxy** — Facade simplifies access to an entire subsystem of many classes; Proxy stands in for ONE specific object, implementing the exact same interface as that object rather than a new, simpler one.
 - **vs Controller** — Facade is protocol-agnostic, simplifying a subsystem for any caller; a Controller (MVC) is bound to a specific external entry point (an HTTP route) and also handles request parsing, validation, auth, and response shaping — none of which is Facade's job. A well-designed Controller often calls a Facade internally, but the Facade itself has no idea a Controller, or HTTP, exists.
 
 ## Facade vs Controller — When To Use Which

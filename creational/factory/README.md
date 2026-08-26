@@ -43,6 +43,7 @@ Client -- asks --> Factory -- creates --> ConcreteImpl (returned as Interface)
 
 - **vs Abstract Factory** — Factory creates one product type; Abstract Factory creates whole families of related products that must stay consistent together.
 - **vs Strategy** — Factory decides *what object to create*, Strategy decides *how an object behaves*. Commonly paired: a factory hands back the right Strategy implementation.
+- **vs Singleton** — orthogonal concerns, easy to conflate: Singleton restricts *how many instances* of one class can exist; Factory decides *which class* to instantiate. A factory can itself be implemented as a Singleton, and neither pattern implies the other.
 
 ## Interview Line
 

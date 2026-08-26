@@ -42,6 +42,7 @@ Client -- calls withX(), withY(), ... --> Builder -- build() --> fully-construct
 
 - **vs Factory** — Factory decides *what type* of object to create; Builder decides *how to assemble* one already-known object's optional details. Commonly paired: a factory method can hand back a pre-configured builder (this repo's `Logger.error()` / `.info()` / `.debug()` each return a `LogBuilder` pre-seeded with the right `LogLevel` — factory + builder working together).
 - **vs Prototype** — Prototype creates a new object by cloning an existing one; Builder creates a new object from scratch, step by step.
+- **vs Abstract Factory** — Abstract Factory creates several separate, simpler objects that belong to the same family, one call each; Builder constructs one complex object step by step across many calls, and the object isn't usable until `build()` finishes.
 
 ## Interview Line
 
