@@ -4,19 +4,18 @@ import creational.abstractfactory.sample.interfaces.*;
 import creational.abstractfactory.sample.factories.*;
 
 public class Main {
-
     public static void main(String[] args) {
-        IUIFactory darkUIFactory = UIFactory.getUIFactory(UIType.DARK);
-        IButton dbutton = darkUIFactory.renderButton();
-        ICheckBox dcheckBox = darkUIFactory.renderCheckBox();
-        dbutton.render();
-        dcheckBox.render();
+        UIType theme = UIType.LIGHT;
+        IUIFactory uiFactory = UIFactory.getUIFactory(theme);
+        renderApp(uiFactory);
+        
+    }
 
-        IUIFactory lightUIFactory = UIFactory.getUIFactory(UIType.LIGHT);
-        IButton lbutton = lightUIFactory.renderButton();
-        ICheckBox lcheckBox = lightUIFactory.renderCheckBox();
+    private static void renderApp(IUIFactory uiFactory){
+        IButton button = uiFactory.renderButton();
+        ICheckBox checkbox = uiFactory.renderCheckBox();
 
-        lbutton.render();
-        lcheckBox.render();
+        button.render();
+        checkbox.render();
     }
 }
