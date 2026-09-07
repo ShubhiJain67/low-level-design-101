@@ -7,6 +7,8 @@ import java.util.Map;
 // never touches a concrete class or holds a reference to a specific instance.
 public class PrototypeRegistry {
     private final Map<String, CloneablePrototype> prototypes = new HashMap<>();
+    // {"user": Obj(name, age, ..),
+    // "circle": Class(radius)}
 
     public void register(String key, CloneablePrototype prototype) {
         prototypes.put(key, prototype);

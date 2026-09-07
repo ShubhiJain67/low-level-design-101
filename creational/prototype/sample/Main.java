@@ -22,14 +22,18 @@ public class Main {
             System.out.println("*********************\n");
 
 
+            // Server
             System.out.println("******* via Prototype Registery *******");
             // Prototype Registry — client asks for a clone by key, never touches a concrete class directly.
             PrototypeRegistry registry = new PrototypeRegistry();
             registry.register("default-user", new RegistryPrototypeClass("Bob", 25, new ArrayList<>()));
 
+
+            // Cliet
             RegistryPrototypeClass fromRegistry1 = (RegistryPrototypeClass) registry.get("default-user");
             fromRegistry1.getHobbies().add("Chess");
             RegistryPrototypeClass fromRegistry2 = (RegistryPrototypeClass) registry.get("default-user");
+            fromRegistry2.getHobbies().add("Dance");
 
             System.out.println("Registry clone 1 hobbies: " + fromRegistry1.getHobbies());
             System.out.println("Registry clone 2 hobbies: " + fromRegistry2.getHobbies());
