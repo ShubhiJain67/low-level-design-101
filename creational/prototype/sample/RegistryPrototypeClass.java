@@ -7,8 +7,8 @@ import java.util.ArrayList;
 // bug demo stays untouched.
 // Cloneable is only a marker does not make it class to override the clone() method
 public class RegistryPrototypeClass implements CloneablePrototype, Cloneable {
-    private String name;
-    private int age;
+    private final String name;
+    private final int age;
     private ArrayList<String> hobbies;
 
     public RegistryPrototypeClass(String name, int age, ArrayList<String> hobbies) {

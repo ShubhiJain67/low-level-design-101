@@ -3,9 +3,9 @@ package creational.prototype.sample;
 import java.util.ArrayList;
 
 public class ShallowCopyClass implements Cloneable {
-    private String name;
-    private int age;
-    private ArrayList<String> hobbies;
+    private final String name;
+    private final int age;
+    private final ArrayList<String> hobbies;
 
     public ShallowCopyClass(String name, int age, ArrayList<String> hobbies) {
         this.name = name;

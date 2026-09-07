@@ -3,8 +3,8 @@ package creational.prototype.sample;
 import java.util.ArrayList;
 
 public class DeepCopyClass implements Cloneable {
-    private String name;
-    private int age;
+    private final String name;
+    private final int age;
     private ArrayList<String> hobbies;
 
     public DeepCopyClass(String name, int age, ArrayList<String> hobbies) {
