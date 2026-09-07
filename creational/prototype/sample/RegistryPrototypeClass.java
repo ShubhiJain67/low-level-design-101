@@ -6,7 +6,7 @@ import java.util.ArrayList;
 // kept separate from DeepCopyClass so that file's original shallow-vs-deep
 // bug demo stays untouched.
 // Cloneable is only a marker does not make it class to override the clone() method
-public class RegistryPrototypeClass implements Prototype, Cloneable {
+public class RegistryPrototypeClass implements CloneablePrototype, Cloneable {
     private String name;
     private int age;
     private ArrayList<String> hobbies;

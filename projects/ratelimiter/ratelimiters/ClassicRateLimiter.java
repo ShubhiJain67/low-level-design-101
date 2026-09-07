@@ -2,7 +2,6 @@ package projects.ratelimiter.ratelimiters;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
-
 import projects.ratelimiter.RateLimiter;
 import projects.ratelimiter.RateLimiterConfig;
 
