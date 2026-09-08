@@ -4,12 +4,19 @@ public class Main {
     public static void main(String[] args) {
         Folder root = new Folder("root");
         Folder src = new Folder("src");
-        src.add(new File("Main.java"));
-        src.add(new File("Utils.java"));
+        File mainFile =  new File("Main.java");
+        File utilsFile =  new File("Utils.java");
+        File licenseFile =  new File("LICENSE.java");
+        File readmeFile =  new File("README.java");
+        
+        src.add(mainFile);
+        src.add(utilsFile);
+        
         root.add(src); // Folder can contain other Folders and Files
-        root.add(new File("LICENSE"));
-        root.add(new File("README.md"));
+        root.add(licenseFile);
+        root.add(readmeFile);
 
-        root.showDetails(""); // same call works on File and Folder alike
+        root.showDetails("");
+
     }
 }
