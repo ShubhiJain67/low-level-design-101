@@ -11,7 +11,10 @@ public class Main {
         ICoffee milkCoffee = new MilkDecorator(coffee);
         System.out.println(milkCoffee.description() + " -> " + milkCoffee.cost());
 
-        ICoffee milkCaramelCoffee = new CaramelDecorator(new MilkDecorator(coffee));
+        ICoffee caramelCoffee = new CaramelDecorator(coffee);
+        System.out.println(caramelCoffee.description() + " -> " + caramelCoffee.cost());
+
+        ICoffee milkCaramelCoffee = new CaramelDecorator(milkCoffee);
         System.out.println(milkCaramelCoffee.description() + " -> " + milkCaramelCoffee.cost());
     }
 }
