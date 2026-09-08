@@ -1,4 +1,7 @@
-package structural.bridge.sample;
+package structural.bridge.sample.shapes;
+
+import structural.bridge.sample.IColor;
+import structural.bridge.sample.Shape;
 
 public class Circle extends Shape {
     public Circle(IColor color) {

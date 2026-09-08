@@ -1,7 +1,7 @@
 package structural.bridge.sample;
 
-import structural.bridge.sample.colors.BlueColor;
-import structural.bridge.sample.colors.RedColor;
+import structural.bridge.sample.colors.*;
+import structural.bridge.sample.shapes.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,5 +9,9 @@ public class Main {
         Shape blueCircle = new Circle(new BlueColor());
         redCircle.draw();
         blueCircle.draw();
+        Shape redSquare = new Square(new RedColor());
+        Shape blueSquare = new Square(new BlueColor());
+        redSquare.draw();
+        blueSquare.draw();
     }
 }
