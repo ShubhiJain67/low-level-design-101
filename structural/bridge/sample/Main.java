@@ -5,13 +5,23 @@ import structural.bridge.sample.shapes.*;
 
 public class Main {
     public static void main(String[] args) {
-        Shape redCircle = new Circle(new RedColor());
-        Shape blueCircle = new Circle(new BlueColor());
+        IColor redColor = new RedColor();
+        IColor blueColor = new BlueColor();
+        Shape redCircle = new Circle(redColor);
+        Shape blueCircle = new Circle(blueColor);
+
         redCircle.draw();
         blueCircle.draw();
-        Shape redSquare = new Square(new RedColor());
-        Shape blueSquare = new Square(new BlueColor());
+
+
+        IColor greenColor = new GreenColor();
+        Shape redSquare = new Square(redColor);
+        Shape blueSquare = new Square(blueColor);
+        Shape greenSquare = new Square(greenColor);
+
+
         redSquare.draw();
         blueSquare.draw();
+        greenSquare.draw();
     }
 }
