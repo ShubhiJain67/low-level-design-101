@@ -1,4 +1,4 @@
-package behavioral.chainofresponsibility.sample.SupportHandlers;
+package behavioral.chainofresponsibility.sample.supporthandlers;
 
 import behavioral.chainofresponsibility.sample.ISupportHandler;
 

@@ -1,9 +1,9 @@
 package behavioral.chainofresponsibility.sample;
 
-import behavioral.chainofresponsibility.sample.SupportHandlers.JuniorEngineer;
-import behavioral.chainofresponsibility.sample.SupportHandlers.L1SupportEngineer;
-import behavioral.chainofresponsibility.sample.SupportHandlers.L2SupportEngineer;
-import behavioral.chainofresponsibility.sample.SupportHandlers.SeniorEngineer;
+import behavioral.chainofresponsibility.sample.supporthandlers.JuniorEngineer;
+import behavioral.chainofresponsibility.sample.supporthandlers.L1SupportEngineer;
+import behavioral.chainofresponsibility.sample.supporthandlers.L2SupportEngineer;
+import behavioral.chainofresponsibility.sample.supporthandlers.SeniorEngineer;
 
 public class Main {
     public static void main(String[] args) {
