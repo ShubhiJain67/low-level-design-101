@@ -93,8 +93,8 @@ Ranked by how often they show up in LLD & system-design interviews — not by Go
 |---|---|---|---|---|
 | Prototype | Creational | ✅ | Cloning expensive-to-construct objects (game entities, deep-copied config objects) | Understanding shallow vs deep copy pitfalls |
 | Flyweight | Structural | ✅ | Large numbers of similar objects sharing common state (text rendering, game particle systems) | Separating intrinsic (shared) from extrinsic (per-instance) state |
-| Mediator | Behavioral | ⌛ TODO | Complex many-to-many object communication (chat room, air traffic control) | Centralizing communication instead of objects referencing each other directly |
-| Memento | Behavioral | ⌛ TODO | Undo functionality that needs to snapshot and restore state | Capturing state without violating encapsulation |
+| Mediator | Behavioral | ✅ | Complex many-to-many object communication (chat room, air traffic control) | Centralizing communication instead of objects referencing each other directly |
+| Memento | Behavioral | ✅ | Undo functionality that needs to snapshot and restore state | Capturing state without violating encapsulation |
 | Visitor | Behavioral | ⌛ TODO | Adding new operations across a class hierarchy without modifying the classes | Double-dispatch mechanics |
 | Interpreter | Behavioral | ⌛ TODO | Small grammar/expression parsing (rule engines, simple query languages) | Recognizing when NOT to use this - most "parsing" problems don't need a full Interpreter pattern |
 
