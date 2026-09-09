@@ -29,6 +29,7 @@ public class HasMoneyState implements IVendingMachineState {
         if (product.getQuantity() <= 0) {
             System.out.println("Product out of stock");
             machine.setState(new OutOfStockState(machine));
+            machine.dispenseProduct();
             return;
         }
 
