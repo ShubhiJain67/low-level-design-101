@@ -1,7 +1,7 @@
 package behavioral.observer.projects.stockmarket.service;
 
+import behavioral.observer.projects.stockmarket.subject.Stock;
 import java.util.Random;
-import subject.Stock;
 
 public class MarketDataService implements Runnable {
 

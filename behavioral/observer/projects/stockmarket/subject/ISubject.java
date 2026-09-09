@@ -1,6 +1,6 @@
 package behavioral.observer.projects.stockmarket.subject;
 
-import observer.IObserver;
+import behavioral.observer.projects.stockmarket.observer.IObserver;
 
 public interface ISubject {
     void subscribe(IObserver observer);

@@ -1,8 +1,10 @@
-import async.NotificationExecutor;
-import exchange.StockExchange;
-import observer.Trader;
-import service.MarketDataService;
-import subject.Stock;
+package behavioral.observer.projects.stockmarket;
+
+import behavioral.observer.projects.stockmarket.async.NotificationExecutor;
+import behavioral.observer.projects.stockmarket.exchange.StockExchange;
+import behavioral.observer.projects.stockmarket.observer.Trader;
+import behavioral.observer.projects.stockmarket.service.MarketDataService;
+import behavioral.observer.projects.stockmarket.subject.Stock;
 
 public class Main {
 

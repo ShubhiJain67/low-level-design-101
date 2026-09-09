@@ -1,8 +1,8 @@
 package behavioral.observer.projects.stockmarket.exchange;
 
+import behavioral.observer.projects.stockmarket.subject.Stock;
 import java.util.HashMap;
 import java.util.Map;
-import subject.Stock;
 
 public class StockExchange {
 

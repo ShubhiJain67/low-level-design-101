@@ -1,8 +1,8 @@
 package behavioral.observer.projects.stockmarket.subject;
 
-import async.NotificationExecutor;
+import behavioral.observer.projects.stockmarket.async.NotificationExecutor;
+import behavioral.observer.projects.stockmarket.observer.IObserver;
 import java.util.List;
-import observer.IObserver;
 
 public class Stock implements ISubject {
     public final String name;
