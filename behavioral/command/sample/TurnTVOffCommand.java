@@ -1,8 +1,7 @@
 package behavioral.command.sample;
 
 public class TurnTVOffCommand implements ICommand {
-
-    private TV tv;
+    private final TV tv;
 
     public TurnTVOffCommand(TV tv) {
         this.tv = tv;

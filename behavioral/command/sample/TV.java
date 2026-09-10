@@ -1,11 +1,17 @@
 package behavioral.command.sample;
 
 public class TV {
+    private final String name;
+
+    TV(String name){
+        this.name = name;
+    }
+
     public void turnOn() {
-        System.out.println("TV is ON");
+        System.out.println("Turning " + this.name + " ON");
     }
 
     public void turnOff() {
-        System.out.println("TV is OFF");
+        System.out.println("Turning " + this.name + " OFF");
     }
 }
