@@ -13,9 +13,9 @@ public class Main {
         ISupportHandler junior = new JuniorEngineer();
         ISupportHandler senior = new SeniorEngineer();
 
-        l1.setNext(l2, 1);
-        l2.setNext(junior, 2);
-        junior.setNext(senior, 3);
+        l1.setNext(l2);
+        l2.setNext(junior);
+        junior.setNext(senior);
 
         l1.handle("PNF", 2);
 
