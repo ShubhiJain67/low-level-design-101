@@ -1,7 +1,5 @@
 package behavioral.interpreter.sample;
 
-import java.beans.Expression;
-
 import behavioral.interpreter.sample.expressions.AddExpression;
 import behavioral.interpreter.sample.expressions.IExpression;
 import behavioral.interpreter.sample.expressions.NumberExpression;
