@@ -10,7 +10,7 @@ public class TradingApp implements IObserver {
 
     @Override
     public void update(ISubject stock) {
-        Stock stockObj = (Stock) stock;
+        IStockSubject stockObj = (IStockSubject) stock;
         System.out.println(name + " received notification: New Price - " + stockObj.getStockPrice());
         System.out.println(name + " received notification: New Trend - " + stockObj.getStockTrend());
     }

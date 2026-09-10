@@ -1,7 +1,6 @@
 package behavioral.observer.sample.push;
 
 public class Main {
-
     public static void main(String[] args) {
         YouTubeChannel yourtechbuddy = new YouTubeChannel();
 

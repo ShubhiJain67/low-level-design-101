@@ -15,6 +15,7 @@ public class Main {
         itc.watch(grow);
 
         rbm.updateDetails(20);
+        
         itc.updateDetails(30);
         itc.updateDetails(20);
     }
