@@ -1,4 +1,4 @@
-package behavioral.observer.sample;
+package behavioral.observer.sample.push;
 
 public interface ISubject {
     void subscribe(IObserver observer);

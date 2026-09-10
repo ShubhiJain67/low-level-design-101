@@ -1,4 +1,4 @@
-package behavioral.observer.sample;
+package behavioral.observer.sample.push;
 
 public class User implements IObserver {
 

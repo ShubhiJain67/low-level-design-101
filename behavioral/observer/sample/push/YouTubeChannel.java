@@ -1,7 +1,4 @@
-package behavioral.observer.sample.subjects;
-
-import behavioral.observer.sample.IObserver;
-import behavioral.observer.sample.ISubject;
+package behavioral.observer.sample.push;
 
 import java.util.ArrayList;
 import java.util.List;

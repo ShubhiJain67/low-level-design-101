@@ -1,6 +1,4 @@
-package behavioral.observer.sample;
-
-import behavioral.observer.sample.subjects.YouTubeChannel;
+package behavioral.observer.sample.push;
 
 public class Main {
 
