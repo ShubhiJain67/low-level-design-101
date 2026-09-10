@@ -1,7 +1,7 @@
 package behavioral.iterator.sample;
 
 public class PlaylistIterator implements IIterator<String> {
-    private String[] songs;
+    private final String[] songs;
     private int index = 0;
 
     public PlaylistIterator(String[] songs) {

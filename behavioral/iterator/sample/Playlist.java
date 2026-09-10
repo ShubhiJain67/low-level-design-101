@@ -1,7 +1,7 @@
 package behavioral.iterator.sample;
 
 public class Playlist {
-    private String[] songs;
+    private final String[] songs;
 
     public Playlist(String[] songs) {
         this.songs = songs;
