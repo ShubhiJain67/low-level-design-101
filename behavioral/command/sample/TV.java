@@ -3,7 +3,7 @@ package behavioral.command.sample;
 public class TV {
     private final String name;
 
-    TV(String name){
+    public TV(String name){
         this.name = name;
     }
 
