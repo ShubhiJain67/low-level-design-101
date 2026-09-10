@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class YouTubeChannel implements ISubject {
-    private List<IObserver> subscribers = new ArrayList<>();
+    private final List<IObserver> subscribers = new ArrayList<>();
     private String latestVideo;
 
     public YouTubeChannel(){}

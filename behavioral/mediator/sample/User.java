@@ -1,6 +1,6 @@
 package behavioral.mediator.sample;
 
-abstract class User {
+public abstract class User {
     protected IChatMediator mediator;
     protected String name;
 

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ChatRoom implements IChatMediator {
 
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     @Override
     public void addUser(User user) {

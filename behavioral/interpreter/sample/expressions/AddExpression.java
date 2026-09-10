@@ -2,8 +2,8 @@ package behavioral.interpreter.sample.expressions;
 
 public class AddExpression implements IExpression {
 
-    private IExpression left;
-    private IExpression right;
+    private final IExpression left;
+    private final IExpression right;
 
     public AddExpression(IExpression left, IExpression right) {
         this.left = left;

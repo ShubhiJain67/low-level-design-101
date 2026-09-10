@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Stock implements IStockSubject {
-    private List<IObserver> watchers = new ArrayList<>();
-    private String name;
+    private final List<IObserver> watchers = new ArrayList<>();
+    private final String name;
     private double price;
     private String trend;
 

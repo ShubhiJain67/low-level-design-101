@@ -2,7 +2,7 @@ package behavioral.interpreter.sample.expressions;
 
 public class NumberExpression implements IExpression {
 
-    private int number;
+    private final int number;
 
     public NumberExpression(int number) {
         this.number = number;

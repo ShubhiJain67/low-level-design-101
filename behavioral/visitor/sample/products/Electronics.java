@@ -4,7 +4,7 @@ import behavioral.visitor.sample.IProduct;
 import behavioral.visitor.sample.IProductVisitor;
 
 public class Electronics implements IProduct {
-    private double price;
+    private final double price;
 
     public Electronics(double price) {
         this.price = price;
