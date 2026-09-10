@@ -7,15 +7,11 @@ public class NoMoneyState implements IVendingMachineState {
         this.machine = machine;
     }
 
-    public void moveToNextState() {
-        IVendingMachineState newState = new MoneyInsertedState(this.machine);
-        machine.setState(newState);
-    }
-    
     @Override
     public void insertMoney() {
         System.out.println("Inserting Money");
-        this.moveToNextState();
+        IVendingMachineState newState = new MoneyInsertedState(this.machine);
+        machine.setState(newState);
     }
 
     @Override

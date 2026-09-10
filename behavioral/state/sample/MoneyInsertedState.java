@@ -7,11 +7,6 @@ public class MoneyInsertedState implements IVendingMachineState {
         this.machine = machine;
     }
 
-    public void moveToNextState() {
-        IVendingMachineState newState = new ProductSelectedState(this.machine);
-        this.machine.setState(newState);
-    }
-
     @Override
     public void insertMoney() {
         System.out.println("Money already inserted");
@@ -20,7 +15,8 @@ public class MoneyInsertedState implements IVendingMachineState {
     @Override
     public void selectProduct() {
         System.out.println("Product selected");
-        this.moveToNextState();
+        IVendingMachineState newState = new ProductSelectedState(this.machine);
+        this.machine.setState(newState);
     }
 
     @Override
