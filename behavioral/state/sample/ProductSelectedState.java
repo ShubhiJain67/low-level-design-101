@@ -1,10 +1,15 @@
 package behavioral.state.sample;
 
 public class ProductSelectedState implements IVendingMachineState {
-    private VendingMachine machine;
+    private final VendingMachine machine;
 
     public ProductSelectedState(VendingMachine machine) {
         this.machine = machine;
+    }
+
+    public void moveToNextState() {
+        IVendingMachineState newState = new NoMoneyState(this.machine);
+        machine.setState(newState);
     }
 
     @Override
@@ -20,8 +25,6 @@ public class ProductSelectedState implements IVendingMachineState {
     @Override
     public void dispense() {
         System.out.println("Dispensing product");
-        machine.setState(
-            new NoMoneyState(machine)
-        );
+        this.moveToNextState();
     }
 }
