@@ -12,10 +12,11 @@ public class Main {
         IExpression twenty = new NumberExpression(20);
 
         IExpression addition = new AddExpression(ten, twenty);
-        System.out.println(addition.interpret());
 
         IExpression subtraction = new SubtractExpression(ten, twenty);
-        System.out.println(subtraction.interpret());
+
+        IExpression finalExpression = new SubtractExpression(addition, subtraction);
+        System.out.println(finalExpression.interpret());
 
     }
 }
