@@ -26,14 +26,30 @@ public class Main {
 
         User deliveryPartner = new User("Gullu", UserType.DELIVERY_DRIVER, UserLevel.GOLD);
         User goldCustomer = new User("Shubhi", UserType.CUSTOMER, UserLevel.GOLD);
-        User diamonCustomer = new User("Prateek", UserType.CUSTOMER, UserLevel.DIAMOND);
-        User staff = new User("Akku", UserType.STAFF, UserLevel.GOLD);
+        User diamondCustomer = new User("Prateek", UserType.CUSTOMER, UserLevel.DIAMOND);
+        // User staff = new User("Akku", UserType.STAFF, UserLevel.GOLD);
 
-        Locker locker = lockerService.getAvailableLocker(station, largeParcel, goldCustomer);
-        if(locker != null){
-            OTP otp = lockerService.depositParcel(station, largeParcel, locker, deliveryPartner, goldCustomer);
-            lockerService.collectParcel(largeParcel, otp, diamonCustomer);
+        Locker selectedLargeLocker = lockerService.getAvailableLocker(station, largeParcel, goldCustomer);
+        OTP largeLockerOTP = null;
+        if(selectedLargeLocker != null){
+            largeLockerOTP = lockerService.depositParcel(station, largeParcel, selectedLargeLocker, deliveryPartner, goldCustomer);
         }
+
+        Locker selectedMediumLocker = lockerService.getAvailableLocker(station, mediumParcel, goldCustomer);
+        OTP mediumLockerOTP = null;
+        if(selectedMediumLocker != null){
+            mediumLockerOTP = lockerService.depositParcel(station, mediumParcel, selectedMediumLocker, deliveryPartner, goldCustomer);
+        }
+
+        Locker selectedSmallLocker = lockerService.getAvailableLocker(station, smallParcel, diamondCustomer);
+        OTP smallLockerOTP = null;
+        if(selectedSmallLocker != null){
+            smallLockerOTP = lockerService.depositParcel(station, smallParcel, selectedSmallLocker, deliveryPartner, goldCustomer);
+        }
+        lockerService.collectParcel(largeParcel, largeLockerOTP, diamondCustomer);
+        lockerService.collectParcel(largeParcel, largeLockerOTP, diamondCustomer);
+        lockerService.collectParcel(mediumParcel, mediumLockerOTP, goldCustomer);
+        lockerService.collectParcel(smallParcel, smallLockerOTP, goldCustomer);
     }
 
     private static void start(){
