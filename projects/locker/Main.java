@@ -1,12 +1,8 @@
 package projects.locker;
 
-import projects.locker.enums.Size;
-import projects.locker.enums.UserLevel;
-import projects.locker.enums.UserType;
+import projects.locker.enums.*;
 import projects.locker.models.*;
-import projects.locker.services.AvailabilityService;
-import projects.locker.services.LockerService;
-import projects.locker.services.OTPService;
+import projects.locker.services.*;
 
 public class Main {
     private static LockerService lockerService;
